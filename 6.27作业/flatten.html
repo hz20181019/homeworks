@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 作业：实现数组扁平化（2种方法）[1,2,[3,4,[5,6,[7,8]]]] => [1,2,3,4,5,6,7,8]
+        // ##方法一:
+        // const flatten = (arr) => {
+        // let result = [];
+        // arr.forEach((item, index, arr) => {
+        //     if (Array.isArray(item)) {
+        //         result = result.concat(flatten(item));
+        //     }
+        //     else {
+        //         result.push(arr[index])
+        //     }
+        // })
+        // return result;
+        // };
+        // const arr = [1,2,[3,4,[5,6,[7,8]]]];
+        // console.log(flatten(arr));  
+        // ##方法二：
+        // const arr = [1,2,[3,4,[5,6,[7,8]]]];
+        // let arrnew = arr.toString().split(',');
+        // arrnew.map(function(item){
+        //     return +item;
+        // })
+        // ##方法三：join数组转字符串 split字符串转数组
+        // var arr = [1,2,[3,4,[5,6,[7,8]]]];
+        // arr.join(",").split(",").map(function(item){
+        //     return +item;
+        // })   
+        // ##方法四:  递归+reduce      
+        function flatten(arr){
+        return arr.reduce(function(prev, item){
+            return prev.concat(Array.isArray(item) ? flatten(item) : item)
+        }, [])
+        } //prev是初始值,利用三目判断是否是数组项,如果是则调用递归,不是则拼接这一项
+        const arr = [1,2,[3,4,[5,6,[7,8]]]];
+        console.log(flatten(arr));
+
+
+  
+
+           
+
+    </script>
+</body>
+</html>
